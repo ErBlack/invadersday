@@ -1,4 +1,4 @@
 /node_modules/
-/public/invadersday/
+/public/invadersday/bundle.*
 
 .DS_Store
