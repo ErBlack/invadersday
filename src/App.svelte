@@ -1,7 +1,7 @@
 <script>
 	import Invintation from './invitation/Invitation.svelte';
 	import Game from './game/Game.svelte';
-    import { gameStart, gameStarted } from './stores';
+    import { gameStarted, triggerStep } from './stores';
     import { preloadAssets } from './game/Assets';
 	export let start;
 
@@ -11,11 +11,18 @@
 		gameStartedStatus = value;
 	});
 
+	triggerStep.subscribe(value => {
+		if (value === 8) {
+			gameStarted.set(true);
+			triggerStep.set(0);
+		}
+	})
+
 	preloadAssets();
 </script>
 
 {#if !gameStartedStatus}
-<main on:click={gameStart}>
+<main>
 	<Invintation start={start} />
 </main>
 {:else}

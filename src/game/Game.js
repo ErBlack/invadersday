@@ -8,7 +8,7 @@ export function init(canvas) {
     canvas.width = 600;
     canvas.height = 600;
 
-    const playerBulletController = new BulletController(canvas, 10, 'green', true);
+    const playerBulletController = new BulletController(canvas, 10, 'black', true);
     const enemyBulletController = new BulletController(canvas, 4, 'black', false);
     const enemyController = new EnemyController(canvas, enemyBulletController, playerBulletController);
     const player = new Player(canvas, 3, playerBulletController);
@@ -22,7 +22,7 @@ export function init(canvas) {
             let textOffset = didWin ? 3.5 : 5;
 
             ctx.fillStyle = 'black';
-            ctx.font = '70px Arial';
+            ctx.font = '70px "Syne Mono"';
             ctx.fillText(text, canvas.width / textOffset, canvas.height / 2);
         }
     }

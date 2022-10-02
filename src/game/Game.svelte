@@ -1,6 +1,6 @@
 <script>
   import { onDestroy } from 'svelte';
-    import { gameFinish, winner } from '../stores.js';
+    import { gameStarted, winner } from '../stores.js';
   import { init } from  './Game.js';
   
   let canvas;
@@ -9,8 +9,6 @@
   onDestroy(() => clearInterval(interval));
 
   $: {
-    console.log(canvas);
-
     if (canvas) {
       const game = init(canvas);
 
@@ -27,7 +25,7 @@
             winner.set(true);
           }
 
-          gameFinish();
+          setTimeout(() => gameStarted.set(false), 1000);
         }
       }
 
