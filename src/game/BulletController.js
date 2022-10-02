@@ -9,7 +9,7 @@ export default class BulletController {
         this.maxBulletsAtATime = maxBulletsAtATime;
         this.soundEnabled = soundEnabled;
 
-        this.shootSound = new Audio('invadersday/sounds/shoot.wav');
+        this.shootSound = new Audio('/invadersday/sounds/shoot.wav');
         this.shootSound.volume = 0.1;
     }
 
