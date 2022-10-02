@@ -31,5 +31,41 @@
     .active {
         color: gold;
         cursor: pointer;
+        animation: slidein ease-in-out 5s infinite;
     }
+
+    @keyframes slidein {
+        0% {
+            transform: translate(0%) scale(1) rotate(0);
+            
+        }
+        10% {
+            transform: translate(1%, 2%) scale(1.01) rotate(3deg);
+        }
+        20% {
+            transform: translate(2%, 7%) scale(1.03) rotate(3deg);
+        }
+        30% {
+            transform: translate(-5% 8%) scale(1.06) rotate(4deg);
+        }
+        40% {
+            transform: translate(8%, 1%) scale(1.1) rotate(-3deg);
+        }
+        50% {
+            transform: translate(2%, -7%) scale(1.05) rotate(-5deg);
+        }
+        60% {
+            transform: translate(3%, 1%) scale(1.02) rotate(-2deg);
+        }
+        70% {
+            transform: translate(-8%, 7%) scale(1.1) rotate(2deg);
+        }
+        80% {
+            transform: translate(2%, 6%) scale(1.03) rotate(-2deg);
+        }
+        90% {
+            transform: translate(7%, 2%) scale(1.02) rotate(3deg);
+        }
+    }
+
 </style>
