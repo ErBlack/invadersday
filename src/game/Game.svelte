@@ -1,7 +1,9 @@
 <script>
   import { onDestroy } from 'svelte';
-    import { gameStarted, winner } from '../stores.js';
+  import { gameStarted, winner } from '../stores.js';
   import { init } from  './Game.js';
+  import { encrypt } from '../lib/crypt';
+  import { win } from '../lib/win';
   
   let canvas;
   let interval;
@@ -22,7 +24,13 @@
           clearInterval(interval);
 
           if (didWin) {
-            winner.set(true);
+            winner.update(value => {
+              const code = value || encrypt(String(Date.now()).slice(0,-1));
+
+              win(code);
+
+              return code;
+            });
           }
 
           setTimeout(() => gameStarted.set(false), 1000);

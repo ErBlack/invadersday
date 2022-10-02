@@ -5,4 +5,4 @@ export const gameStarted = writable(false);
 
 export const triggerStep = writable(0);
 
-export const winner = localStorage(false);
+export const winner = localStorage('winner');
