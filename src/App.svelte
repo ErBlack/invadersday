@@ -53,6 +53,7 @@
 		.egg {
 			width: 100vw;
 			height: 100vw;
+			margin-bottom: 0;
 		}
 	}
 

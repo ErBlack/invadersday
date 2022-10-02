@@ -16,9 +16,14 @@ export default class Player {
         this.height = 48;
         this.image = new Image();
         this.image.src = IMAGES.player;
+        this.touchX = undefined;
 
         document.addEventListener('keydown', this.keydown);
         document.addEventListener('keyup', this.keyup);
+        document.documentElement.addEventListener('touchmove', this.touchmove);
+        document.documentElement.addEventListener('touchstart', this.touchstart);
+        document.documentElement.addEventListener('touchend', this.touchend);
+        document.documentElement.addEventListener('touchcancel', this.touchend);
     }
 
     draw(ctx) {
@@ -72,5 +77,34 @@ export default class Player {
         if (event.code == 'Space') {
             this.shootPressed = false;
         }
+    };
+
+    touchmove = event => {
+        const touchX = event.touches[0].clientX;
+
+        if (touchX === this.touchX) {
+            this.leftPressed = false;
+            this.rightPressed = false;
+        } else if (touchX > this.touchX) {
+            this.rightPressed = true;
+            this.leftPressed = false;
+        } else {
+            this.leftPressed = true;
+            this.rightPressed = false;
+        }
+
+        this.touchX = touchX;
+    };
+
+    touchstart = event => {
+        this.shootPressed = true;
+        this.touchX = event.touches[0].clientX;
+    };
+
+    touchend = () => {
+        this.shootPressed = false;
+        this.leftPressed = false;
+        this.rightPressed = false;
+        this.touchX = undefined;
     };
 }
