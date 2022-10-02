@@ -10,6 +10,7 @@ body {
     color: #333;
     margin: 0;
     box-sizing: border-box;
+    --accent-color: #006fff;
 }
 
 a {
@@ -19,5 +20,5 @@ a {
 
 a:hover {
     text-decoration: underline;
-    color: #006fff;
+    color: var(--accent-color);
 }
