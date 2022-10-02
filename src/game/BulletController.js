@@ -4,10 +4,9 @@ export default class BulletController {
     bullets = [];
     timeTillNextBulletAllowed = 0;
 
-    constructor(canvas, maxBulletsAtATime, bulletColor, soundEnabled) {
+    constructor(canvas, maxBulletsAtATime, soundEnabled) {
         this.canvas = canvas;
         this.maxBulletsAtATime = maxBulletsAtATime;
-        this.bulletColor = bulletColor;
         this.soundEnabled = soundEnabled;
 
         this.shootSound = new Audio('invadersday/sounds/shoot.wav');
@@ -34,8 +33,12 @@ export default class BulletController {
         return false;
     }
 
+    isShootAvailable() {
+        return this.timeTillNextBulletAllowed <= 0 && this.bullets.length < this.maxBulletsAtATime;
+    }
+
     shoot(x, y, velocity, timeTillNextBulletAllowed = 0) {
-        if (this.timeTillNextBulletAllowed <= 0 && this.bullets.length < this.maxBulletsAtATime) {
+        if (this.isShootAvailable()) {
             const bullet = new Bullet(this.canvas, x, y, velocity, this.bulletColor);
             this.bullets.push(bullet);
             if (this.soundEnabled) {

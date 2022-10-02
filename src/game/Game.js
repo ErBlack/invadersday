@@ -8,8 +8,8 @@ export function init(canvas) {
     canvas.width = 600;
     canvas.height = 600;
 
-    const playerBulletController = new BulletController(canvas, 10, 'black', true);
-    const enemyBulletController = new BulletController(canvas, 4, 'black', false);
+    const playerBulletController = new BulletController(canvas, 10, true);
+    const enemyBulletController = new BulletController(canvas, 4, false);
     const enemyController = new EnemyController(canvas, enemyBulletController, playerBulletController);
     const player = new Player(canvas, 3, playerBulletController);
 

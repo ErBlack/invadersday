@@ -11,9 +11,9 @@ export default class Player {
         this.bulletController = bulletController;
 
         this.x = this.canvas.width / 2;
-        this.y = this.canvas.height - 75;
-        this.width = 50;
-        this.height = 48;
+        this.y = this.canvas.height - 55;
+        this.width = 49;
+        this.height = 49;
         this.image = new Image();
         this.image.src = IMAGES.player;
         this.touchX = undefined;
@@ -26,13 +26,25 @@ export default class Player {
         document.documentElement.addEventListener('touchcancel', this.touchend);
     }
 
+    getBulletX() {
+        return this.x + Math.floor(this.width / 2) - 1;
+    }
+
+    getBulletY() {
+        return this.y - 8;
+    }
+
     draw(ctx) {
         if (this.shootPressed) {
-            this.bulletController.shoot(this.x + this.width / 2, this.y, 4, 10);
+            this.bulletController.shoot(this.getBulletX(), this.getBulletY(), 4, 10);
         }
         this.move();
         this.collideWithWalls();
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+
+        if (this.bulletController.isShootAvailable()) {
+            ctx.fillRect(this.getBulletX(), this.getBulletY(), 3, 20);
+        }
     }
 
     collideWithWalls() {
