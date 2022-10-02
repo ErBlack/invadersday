@@ -1,3 +1,5 @@
+import { IMAGES } from './Assets';
+
 export default class Player {
     rightPressed = false;
     leftPressed = false;
@@ -13,7 +15,7 @@ export default class Player {
         this.width = 50;
         this.height = 48;
         this.image = new Image();
-        this.image.src = '/invadersday/images/player.png';
+        this.image.src = IMAGES.player;
 
         document.addEventListener('keydown', this.keydown);
         document.addEventListener('keyup', this.keyup);

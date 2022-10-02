@@ -2,13 +2,16 @@
 	import Invintation from './invitation/Invitation.svelte';
 	import Game from './game/Game.svelte';
     import { gameStart, gameStarted } from './stores';
+    import { preloadAssets } from './game/Assets';
 	export let start;
 
 	let gameStartedStatus;
 
 	gameStarted.subscribe(value => {
 		gameStartedStatus = value;
-	})
+	});
+
+	preloadAssets();
 </script>
 
 {#if !gameStartedStatus}
@@ -16,7 +19,7 @@
 	<Invintation start={start} />
 </main>
 {:else}
-<main class="egg"><Game/></main>
+<section class="egg"><Game/></section>
 {/if}
 <style>
 	main {

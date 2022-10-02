@@ -1,3 +1,5 @@
+import { IMAGES } from './Assets';
+
 export default class Enemy {
     constructor(x, y, imageNumber) {
         this.x = x;
@@ -6,7 +8,7 @@ export default class Enemy {
         this.height = 32;
 
         this.image = new Image();
-        this.image.src = `/invadersday/images/enemy${imageNumber}.png`;
+        this.image.src = IMAGES[`enemy${imageNumber}`];
     }
 
     draw(ctx) {

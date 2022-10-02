@@ -2,8 +2,7 @@ import EnemyController from './EnemyController.js';
 import Player from './Player.js';
 import BulletController from './BulletController.js';
 
-export function init() {
-    const canvas = document.getElementById('game');
+export function init(canvas) {
     const ctx = canvas.getContext('2d');
 
     canvas.width = 600;
@@ -57,5 +56,10 @@ export function init() {
             playerBulletController.draw(ctx);
             enemyBulletController.draw(ctx);
         }
+
+        return {
+            isGameOver,
+            didWin,
+        };
     };
 }

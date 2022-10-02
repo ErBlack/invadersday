@@ -1,15 +1,41 @@
 <script>
+  import { onDestroy } from 'svelte';
+    import { gameFinish, winner } from '../stores.js';
   import { init } from  './Game.js';
+  
+  let canvas;
+  let interval;
 
-  setTimeout(() => {
-    const game = init();
+  onDestroy(() => clearInterval(interval));
 
-    // setInterval(game, 1000 / 60);
-    setInterval(game, 1000 / 60);
-  }, 1000)
+  $: {
+    console.log(canvas);
 
+    if (canvas) {
+      const game = init(canvas);
+
+      const loop = () => {
+        const {
+          isGameOver,
+          didWin
+        } = game();
+
+        if (isGameOver) {
+          clearInterval(interval);
+
+          if (didWin) {
+            winner.set(true);
+          }
+
+          gameFinish();
+        }
+      }
+
+      interval = setInterval(loop, 1000 / 60);
+    }
+  }
 </script>
-<canvas id="game"></canvas>
+<canvas id="game" bind:this={canvas}></canvas>
 <style>
   canvas {
     width: 100%;
