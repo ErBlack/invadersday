@@ -21,7 +21,7 @@
 	preloadAssets();
 </script>
 
-{#if gameStartedStatus}
+{#if !gameStartedStatus}
 <main>
 	<Invintation start={start} />
 </main>
