@@ -1,6 +1,5 @@
 <script>
-    import { win } from '../lib/win';
-    import { winner } from '../stores';
+    import { gameStarted, winner } from '../stores';
 
 
     let winCode;
@@ -10,7 +9,9 @@
     });
 
     const onClick = () => {
-        if (winCode) win(winCode);
+        if (winCode) {
+            gameStarted.set(true);
+        }
     }
 </script>
 
